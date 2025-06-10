@@ -1,11 +1,15 @@
 import requests
 import xml.etree.ElementTree as ET
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from keywords_extracter_agent import extract_keywords
 
 def search_pubmed(keywords, max_results=5):
     base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
-    api_key = "77284ffa9ac1c2846826720ff39933f79a08"
+    api_key = os.getenv("PUBMED_API_KEY")
 
     search_terms = keywords.split('\n')[0] 
     search_query = search_terms.strip().replace(',', ' AND ')

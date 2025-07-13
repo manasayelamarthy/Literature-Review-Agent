@@ -80,7 +80,7 @@ if __name__ == "__main__":
                 print(f"\n🔖 Paper {i}")
                 print("Title:", paper["title"])
                 print("Abstract:", paper["summary"])
-                print("URL: 🔗", paper["url"])
+                print("URLs: 🔗", paper["url"])
 
 
     

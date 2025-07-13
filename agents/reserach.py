@@ -2,10 +2,9 @@ import requests
 import xml.etree.ElementTree as ET
 import os
 from dotenv import load_dotenv
+from keywords_extracter_agent import extract_keywords
 
 load_dotenv()
-
-from keywords_extracter_agent import extract_keywords
 
 def search_pubmed(keywords, max_results=5):
     base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
@@ -49,25 +48,39 @@ def search_pubmed(keywords, max_results=5):
     return results
 
 
-keywords = extract_keywords(
-    "Predicting Disease Progression Using OCT Data. "
-    "Predicting prognosis and number of anti VEGF injections needed and visual acuity improvement "
-    "in DME, CNVM based on OCT, Age, Vision, clinical risk factors."
-)
 
-for keyword in keywords.split('\n'):
-    if not keyword.strip():
-        continue
+
+
+if __name__ == "__main__":
+    keywords = extract_keywords(
+        "Predicting Disease Progression Using OCT Data. "
+        "Predicting prognosis and number of anti VEGF injections needed and visual acuity improvement "
+        "in DME, CNVM based on OCT, Age, Vision, clinical risk factors."
+    )
+
+    for keyword in keywords.split('\n'):
+        if not keyword.strip():
+            continue
+            
+        print(f"\n🔍 Searching for: {keyword.strip()}")
+        papers = search_pubmed(keyword)
         
-    print(f"\n🔍 Searching for: {keyword.strip()}")
-    papers = search_pubmed(keyword)
+        if papers:
+            print(f"\nFound {len(papers)} papers:")
+            for i, paper in enumerate(papers, 1):
+                print(f"\n🔖 Paper {i}")
+                print("Title:", paper["title"])
+                print("Abstract:", paper["summary"])
+                print("URL: 🔗", paper["url"])  
+        else:
+            print("No papers found for this keyword")
+            print("Retrying with a different keyword...")
+            papers = search_pubmed(keyword)
+            for i, paper in enumerate(papers, 1):
+                print(f"\n🔖 Paper {i}")
+                print("Title:", paper["title"])
+                print("Abstract:", paper["summary"])
+                print("URL: 🔗", paper["url"])
+
+
     
-    if papers:
-        print(f"\nFound {len(papers)} papers:")
-        for i, paper in enumerate(papers, 1):
-            print(f"\n🔖 Paper {i}")
-            print("Title:", paper["title"])
-            print("Abstract:", paper["summary"])
-            print("URL: 🔗", paper["url"])  
-    else:
-        print("No papers found for this keyword")

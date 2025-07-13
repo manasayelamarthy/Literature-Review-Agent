@@ -10,7 +10,7 @@ model = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 prompt_template = ChatPromptTemplate.from_messages([
     ("system", 
      "You are an intelligent research assistant working on building a literature review agent. "
-     "Your task is to extract **top 3 complete, meaningful search phrases ** from the given research topic. "
+     "Your task is to extract **top 5 complete, meaningful search phrases ** from the given research topic. "
      "These phrases will be used to search for academic papers in tools like Semantic Scholar or arXiv.\n\n"
      " Each phrase should be:\n"
      "- Specific and informative\n"

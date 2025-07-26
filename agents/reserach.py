@@ -48,9 +48,6 @@ def search_pubmed(keywords, max_results=5):
     return results
 
 
-
-
-
 if __name__ == "__main__":
     keywords = extract_keywords(
         "Predicting Disease Progression Using OCT Data. "

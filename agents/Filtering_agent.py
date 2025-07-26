@@ -64,33 +64,36 @@ if __name__ == "__main__":
         print(f"\n🔍 Searching for: {keyword.strip()}")
         papers = search_pubmed(keyword)
         papers_by_keyword[keyword.strip()] = papers
-        #print(papers_by_keyword)
+        
+        
+        
 
     top_papers = filter_top_5_research_papers(problem_statement, papers_by_keyword)
     #print(f"top_papers: {top_papers}")
 
-    titles = []
-    summaries = []
-    for line in top_papers.splitlines():
-        if "**Title:**" in line:
-            title = line.split("**Title:**")[-1].strip()
-            titles.append(title)
-        elif "**Summary:**" in line:
-            summary = line.split("**Summary:**")[-1].strip()
-            summaries.append(summary)
-    
+    """ titles = []
+        summaries = []
+        for line in top_papers.splitlines():
+            if "**Title:**" in line:
+                title = line.split("**Title:**")[-1].strip()
+                titles.append(title)
+            elif "**Summary:**" in line:
+                summary = line.split("**Summary:**")[-1].strip()
+                summaries.append(summary)
+        
 
-print("\n✅ Final Extracted Top 5 Papers:\n")
-for i, (title, summary) in enumerate(zip(titles, summaries), 1):
-    print(f"\n🔖 Paper {i}")
-    print("Title:", title)
-    print("Summary:", summary)
+    print("\n✅ Final Extracted Top 5 Papers:\n")
+    for i, (title, summary) in enumerate(zip(titles, summaries), 1):
+        print(f"\n🔖 Paper {i}")
+        print("Title:", title)
+        print("Summary:", summary)
 
-    for paper in papers_by_keyword.values():
-        for p in paper:
-            if p['title'] == title:
-                print("URL: 🔗", p['url'])  
-                break
+        for paper in papers_by_keyword.values():
+            for p in paper:
+                if p['title'] == title:
+                    print("URL: 🔗", p['url'])  
+                    break"""
+
         
    
 

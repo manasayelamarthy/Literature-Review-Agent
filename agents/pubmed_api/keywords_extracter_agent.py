@@ -3,6 +3,8 @@ import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 
+
+
 load_dotenv()
 
 model = ChatGoogleGenerativeAI(model="gemini-2.0-flash")  

@@ -12,32 +12,32 @@ def search_pubmed(keywords, max_results=5):
 
     search_terms = keywords.split('\n')[0] 
     search_query = search_terms.strip().replace(',', ' AND ')
-   
+
     search = requests.get(
         f"{base}esearch.fcgi?db=pubmed&retmode=json&retmax={max_results}&term={search_query}&api_key={api_key}"
     )
 
-    search_json = search.json()
-    ids = ",".join(search_json["esearchresult"]["idlist"])
+    try:
+        search_json = search.json()
+    except requests.exceptions.JSONDecodeError:
+        return []
+
+    ids = ",".join(search_json.get("esearchresult", {}).get("idlist", []))
     if not ids:
-        print("No results found for the search query.")
         return []
 
     fetch = requests.get(
         f"{base}efetch.fcgi?db=pubmed&retmode=xml&id={ids}&api_key={api_key}"
     )
     
-    
     root = ET.fromstring(fetch.content)
-
     results = []
+
     for article in root.findall(".//PubmedArticle"):
-      
         pmid = article.find(".//PMID").text
         title = article.find(".//ArticleTitle").text
         abstract_elem = article.find(".//AbstractText")
         abstract = abstract_elem.text if abstract_elem is not None else "No abstract available"
-        
         pubmed_url = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
         
         results.append({
@@ -45,8 +45,8 @@ def search_pubmed(keywords, max_results=5):
             "summary": abstract,
             "url": pubmed_url
         })
-    return results
 
+    return results
 
 if __name__ == "__main__":
     keywords = extract_keywords(

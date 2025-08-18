@@ -104,9 +104,9 @@ Cloud SDK and Docker are not required for local runs.
 **Ordering**: The orchestrator ensures the title is collected first, and only then runs the sub-agents sequentially.
 
 ## Acknowledgments
-  1. Google Agent Development Kit (ADK).\
-  2. LangChain.\
-  3. arXiv API.\
+  1. Google Agent Development Kit (ADK).
+  2. LangChain.
+  3. arXiv API.
   4. pubmed_api
 
 

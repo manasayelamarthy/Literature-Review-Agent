@@ -15,3 +15,10 @@ The pipeline orchestrates the following sub-agents:
 > Conclusion agent – synthesizes findings and next steps.
 
 Deployment to Cloud Run is not included yet; this README focuses on running locally.
+
+## Prerequisites
+1.Python 3.10+ (recommended 3.11).\
+2.A terminal with basic build tools.\
+3.An API key for Google Generative AI (Gemini). You can use AI Studio.\
+4.Create an API key and keep it handy.\
+Cloud SDK and Docker are not required for local runs.

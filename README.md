@@ -38,7 +38,10 @@ You can directly try the deployed agent here:
 - Google API key from AI Studio (or Vertex AI access)  
 
 Clone the repository:
-
 ```bash
 git clone https://github.com/manasayelamarthy/Literature-Review-Agent.git
 cd Literature-Review-Agent/Google_adk
+```
+## Resources :
+
+https://google.github.io/adk-docs/

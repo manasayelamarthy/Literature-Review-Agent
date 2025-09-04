@@ -1,6 +1,5 @@
 # Literature-Review-Agent
-
-# Literature Review Agent
+## Literature Review Agent
 
 This project is a **Literature Review Assistant** built using **Google’s Agent Development Kit (ADK)**.  
 It provides a structured pipeline to generate a literature review from just a project title.  
